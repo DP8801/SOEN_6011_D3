@@ -1,7 +1,5 @@
 package org.example;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -109,49 +107,46 @@ public class ExponentialCalculator {
     resultText.setBounds(180, 140, 165, 25);
     panel.add(resultText);
 
-    calculateButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        try {
-          // Check if any input fields are empty
-          if (aText.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(panel, "Please enter a value for 'a'.", INPUT_ERROR,
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-          }
-          if (bText.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(panel, "Please enter a value for 'b'.",
-                    INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
-            return;
-          }
-          if (xText.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(panel, "Please enter a value for 'x'.",
-                    INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
-            return;
-          }
-
-          // Parse inputs
-          double a = Double.parseDouble(aText.getText());
-          double b = Double.parseDouble(bText.getText());
-          double x = Double.parseDouble(xText.getText());
-
-          // Check if b is less than or equal to zero
-          if (b <= 0) {
-            JOptionPane.showMessageDialog(panel, "The base 'b' must be greater than zero.",
-                    INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
-            return;
-          }
-
-          // Compute result
-          double result = computeExponentialFunction(a, b, x);
-          resultText.setText(String.valueOf(result));
-        } catch (NumberFormatException ex) {
-          JOptionPane.showMessageDialog(panel, "Invalid input. Please enter numerical values.",
-                  INPUT_ERROR, JOptionPane.ERROR_MESSAGE);
-        } catch (ArithmeticException ex) {
-          JOptionPane.showMessageDialog(panel, "Error: " + ex.getMessage(),
-                  "Calculation Error", JOptionPane.ERROR_MESSAGE);
+    calculateButton.addActionListener(e -> {
+      try {
+        // Check if any input fields are empty
+        if (aText.getText().trim().isEmpty()) {
+          JOptionPane.showMessageDialog(panel, "Please enter a value for 'a'.", INPUT_ERROR,
+                  JOptionPane.WARNING_MESSAGE);
+          return;
         }
+        if (bText.getText().trim().isEmpty()) {
+          JOptionPane.showMessageDialog(panel, "Please enter a value for 'b'.",
+                  INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
+          return;
+        }
+        if (xText.getText().trim().isEmpty()) {
+          JOptionPane.showMessageDialog(panel, "Please enter a value for 'x'.",
+                  INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
+          return;
+        }
+
+        // Parse inputs
+        double a = Double.parseDouble(aText.getText());
+        double b = Double.parseDouble(bText.getText());
+        double x = Double.parseDouble(xText.getText());
+
+        // Check if b is less than or equal to zero
+        if (b <= 0) {
+          JOptionPane.showMessageDialog(panel, "The base 'b' must be greater than zero.",
+                  INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
+          return;
+        }
+
+        // Compute result
+        double result = computeExponentialFunction(a, b, x);
+        resultText.setText(String.valueOf(result));
+      } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(panel, "Invalid input. Please enter numerical values.",
+                INPUT_ERROR, JOptionPane.ERROR_MESSAGE);
+      } catch (ArithmeticException ex) {
+        JOptionPane.showMessageDialog(panel, "Error: " + ex.getMessage(),
+                "Calculation Error", JOptionPane.ERROR_MESSAGE);
       }
     });
   }

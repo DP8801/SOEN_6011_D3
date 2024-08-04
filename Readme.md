@@ -25,6 +25,11 @@
    It provided with three issues two highly prioritized and 1 of medium priority
    
    Below is the image after the issue are fixed.
-3. 
+   ![img.png](src/main/resources/images/SonarcloudAfter.png)
 
-3. 
+3. Sonarlint analysis
+   Before:
+   ![img.png](src/main/resources/images/SonarlintBefore.png)
+   
+   After solving the issues:
+   ![img.png](src/main/resources/images/SonarlintAfter.png)
