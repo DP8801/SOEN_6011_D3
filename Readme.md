@@ -20,4 +20,11 @@
    IDE checkstyle plugin 
    ![img.png](src/main/resources/images/IDEcheckstyle.png)
 
-2. 
+2. Sonar cloud static code analysis result
+   ![img.png](src/main/resources/images/SonarCloudBefore.png)
+   It provided with three issues two highly prioritized and 1 of medium priority
+   
+   Below is the image after the issue are fixed.
+3. 
+
+3. 

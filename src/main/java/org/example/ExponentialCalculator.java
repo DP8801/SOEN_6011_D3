@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 /**
  * This class represents a simple Swing-based application that calculates the
@@ -34,6 +35,8 @@ public class ExponentialCalculator {
    */
   private static JTextField resultText;
 
+  private static final String INPUT_ERROR = "Input Error";
+
   // Private constructor to prevent instantiation
   private ExponentialCalculator() {
     throw new UnsupportedOperationException("Utility class");
@@ -53,7 +56,7 @@ public class ExponentialCalculator {
   public static void main(String[] args) {
     JFrame frame = new JFrame("Function: ab^x");
     frame.setSize(400, 300);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     JPanel panel = new JPanel();
     frame.add(panel);
@@ -112,18 +115,18 @@ public class ExponentialCalculator {
         try {
           // Check if any input fields are empty
           if (aText.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(panel, "Please enter a value for 'a'.", "Input Error",
+            JOptionPane.showMessageDialog(panel, "Please enter a value for 'a'.", INPUT_ERROR,
                     JOptionPane.WARNING_MESSAGE);
             return;
           }
           if (bText.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(panel, "Please enter a value for 'b'.",
-                    "Input Error", JOptionPane.WARNING_MESSAGE);
+                    INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
             return;
           }
           if (xText.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(panel, "Please enter a value for 'x'.",
-                    "Input Error", JOptionPane.WARNING_MESSAGE);
+                    INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
             return;
           }
 
@@ -135,7 +138,7 @@ public class ExponentialCalculator {
           // Check if b is less than or equal to zero
           if (b <= 0) {
             JOptionPane.showMessageDialog(panel, "The base 'b' must be greater than zero.",
-                    "Input Error", JOptionPane.WARNING_MESSAGE);
+                    INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
             return;
           }
 
@@ -144,7 +147,7 @@ public class ExponentialCalculator {
           resultText.setText(String.valueOf(result));
         } catch (NumberFormatException ex) {
           JOptionPane.showMessageDialog(panel, "Invalid input. Please enter numerical values.",
-                  "Input Error", JOptionPane.ERROR_MESSAGE);
+                  INPUT_ERROR, JOptionPane.ERROR_MESSAGE);
         } catch (ArithmeticException ex) {
           JOptionPane.showMessageDialog(panel, "Error: " + ex.getMessage(),
                   "Calculation Error", JOptionPane.ERROR_MESSAGE);
