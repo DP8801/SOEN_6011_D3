@@ -65,3 +65,12 @@
    
      - Error Messages: Error messages are designed to be clear and descriptive. They provide specific guidance on what needs to be corrected, which is crucial for users with cognitive disabilities.
          ![img_2.png](src/main/resources/images/img_2.png)
+
+
+
+##### References #####
+1. Creating and Writing Test in JUNIT5 : https://www.jetbrains.com/help/idea/junit.html
+2. Checkstyle: https://checkstyle.org/idea.html
+3. Sonarlint : https://medium.com/@tarunchhabra/using-sonarlint-with-sonarqube-in-intellij-ide-5128111d1b8d
+4. Codestyle: https://medium.com/codex/mastering-code-aesthetics-setting-up-google-code-style-in-intellij-like-a-pro-d43b306e3e6b
+5. 

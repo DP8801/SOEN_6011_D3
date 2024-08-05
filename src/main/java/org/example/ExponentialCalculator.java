@@ -95,8 +95,8 @@ public final class ExponentialCalculator {
     labelB.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
-        JOptionPane.showMessageDialog(panel, "Valid range for 'b': Any real number greater than zero.",
-                INPUT_INFO, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(panel, "Valid range for 'b': Any real number "
+                + "greater than zero.", INPUT_INFO, JOptionPane.INFORMATION_MESSAGE);
       }
     });
     panel.add(labelB);
