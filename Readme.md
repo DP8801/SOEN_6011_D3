@@ -62,7 +62,7 @@ Error Messages: Clear and descriptive error messages guide users on necessary co
 ![img_2.png](src/main/resources/images/img_2.png)
 
 ### 5. Debugging
-Used JDB to debug the problems in the project.
+Used IDE built-in debugger to debug the problems in the project.
 ![img.png](src/main/resources/images/JDB.png)
 
 ### 6. Unit test
@@ -146,3 +146,14 @@ Expected Result: Result should not equal Math.exp(-1.0) due to potential impleme
 2. Checkstyle: https://checkstyle.org/idea.html
 3. Sonarlint : https://medium.com/@tarunchhabra/using-sonarlint-with-sonarqube-in-intellij-ide-5128111d1b8d
 4. Codestyle: https://medium.com/codex/mastering-code-aesthetics-setting-up-google-code-style-in-intellij-like-a-pro-d43b306e3e6b
+
+##### Versioning #####
+This project uses Semantic Versioning. The current version is `2.0.0`. 
+
+    Semantic Versioning
+    - MAJOR version for incompatible changes.
+    - MINOR version for backward-compatible new features.
+    - PATCH version for backward-compatible bug fixes.
+
+
+
