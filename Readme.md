@@ -1,20 +1,18 @@
-SOEN-6011 Delivery 3
-Response to Tasks
-Problem 5: Code Modification and Compliance
-Java Source Code Conformance:
+## **SOEN-6011 Delivery 3**
 
-To ensure that the Java source code adheres to established programming styles, we utilized Checkstyle and PMD. The following images illustrate the process and results:
+### 1. Java Source Code Conformance:
 
-Checkstyle Before Correction:
-   ![img.png](src/main/resources/images/checkstyle.png)
+    To ensure that the Java source code adheres to established programming styles, we utilized Checkstyle. The following images illustrate the process and results:
+    Checkstyle Before Correction:
+       ![img.png](src/main/resources/images/checkstyle.png)
+    
+    Checkstyle After Correction:
+        ![img.png](src/main/resources/images/checkstyleafter.png)
+    
+    IDE checkstyle plugin:
+       ![img.png](src/main/resources/images/IDEcheckstyle.png)
 
-Checkstyle After Correction:
-    ![img.png](src/main/resources/images/checkstyleafter.png)
-
-IDE checkstyle plugin:
-   ![img.png](src/main/resources/images/IDEcheckstyle.png)
-
-2. SonarCloud Static Code Analysis:
+### 2. SonarCloud Static Code Analysis:
 
     SonarCloud was used for static code analysis, initially revealing three issues: two high-priority and one medium-priority. 
     The following images show the issues before and after remediation:
@@ -24,116 +22,116 @@ IDE checkstyle plugin:
    
     It provided with three issues two highly prioritized and 1 of medium priority
    
-   Below is the image after the issue are fixed.
-   ![img.png](src/main/resources/images/SonarcloudAfter.png)
+    Below is the image after the issue are fixed.
+    ![img.png](src/main/resources/images/SonarcloudAfter.png)
 
-3. Sonarlint analysis
+### 3. Sonarlint analysis
    Before:
    ![img.png](src/main/resources/images/SonarlintBefore.png)
    
    After solving the issues:
    ![img.png](src/main/resources/images/SonarlintAfter.png)
 
-4. Design Principles and Accessibility Features:
+### 4. Design Principles and Accessibility Features:
 
     The ExponentialCalculator application is designed with the following principles to ensure usability and a positive user experience:
     
-    User-Centric Design: The user interface (UI) is crafted to be intuitive with clearly labeled input fields and prominent error messages guiding users through data entry.
+    **User-Centric Design**: The user interface (UI) is crafted to be intuitive with clearly labeled input fields and prominent error messages guiding users through data entry.
     
-    Separation of Concerns: The code is organized into distinct methods and classes, enhancing readability and maintainability.
+    **Separation of Concerns**: The code is organized into distinct methods and classes, enhancing readability and maintainability.
     
-    Consistency: Uniformity in fonts, colors, and button styles provides a cohesive look and feel throughout the application.
+    **Consistency**: Uniformity in fonts, colors, and button styles provides a cohesive look and feel throughout the application.
     
-    Error Handling: Robust error handling mechanisms manage invalid inputs and calculation errors, providing clear feedback through dialogs and visual indicators.
+    **Error Handling**: Robust error handling mechanisms manage invalid inputs and calculation errors, providing clear feedback through dialogs and visual indicators.
     
-    Responsive Design: The layout adapts well to different window sizes and resolutions, ensuring usability across various devices.
+    **Responsive Design**: The layout adapts well to different window sizes and resolutions, ensuring usability across various devices.
     
-    Accessibility Features:
+    **Accessibility Features:**
     
-    Color Contrast: High-contrast colors are used to improve readability, with distinct colors for error messages.
+    **Color Contrast**: High-contrast colors are used to improve readability, with distinct colors for error messages.
     ![img.png](src/main/resources/images/img.png)
     
-    Tooltips and Error Messages: Tooltips offer additional information on valid input ranges, and real-time error messages are displayed for invalid inputs.
+    **Tooltips and Error Messages**: Tooltips offer additional information on valid input ranges, and real-time error messages are displayed for invalid inputs.
     ![img_1.png](src/main/resources/images/img_1.png)
     
-    Keyboard Navigation: The application supports keyboard navigation, facilitating interaction for users who rely on keyboard input.
+    **Keyboard Navigation**: The application supports keyboard navigation, facilitating interaction for users who rely on keyboard input.
     
-    Real-Time Validation: Immediate feedback on user input is provided through DocumentListener, helping users correct errors as they enter data.
+    **Real-Time Validation**: Immediate feedback on user input is provided through DocumentListener, helping users correct errors as they enter data.
     
     Error Messages: Clear and descriptive error messages guide users on necessary corrections, enhancing accessibility for users with cognitive disabilities.
     ![img_2.png](src/main/resources/images/img_2.png)
 
-5. Unit test
+### 5. Unit test
    The ExponentialCalculatorTest class contains unit tests for the ExponentialCalculator class. These tests are designed to validate the functionality and correctness of various methods within the ExponentialCalculator class. The tests cover a range of scenarios to ensure that the methods behave as expected under different conditions. Below is an overview of the tests included:
 
-    Tests Overview
-    testComputeExponentialFunction_validInputs
+    **Tests Overview**
+    1. testComputeExponentialFunction_validInputs
     
     Purpose: Verify that the computeExponentialFunction method correctly computes the result for valid inputs.
     Inputs: a = 2.0, b = 3.0, x = 2.0
     Expected Result: 18.0
     
-    testComputeExponentialFunction_zeroBase
+    2. testComputeExponentialFunction_zeroBase
     
     Purpose: Check that the method handles a zero base correctly.
     Inputs: a = 2.0, b = 0.0, x = 2.0
     Expected Result: 0.0 
     
-    testComputeExponentialFunction_invalidBase
+    3. testComputeExponentialFunction_invalidBase
     
     Purpose: Ensure that the method throws an IllegalArgumentException for an invalid base.
     Inputs: a = 2.0, b = -1.0, x = 2.0
     Expected Exception: IllegalArgumentException with the message "Logarithm of non-positive numbers is undefined."
     
-    testPower_validInputs
+    4. testPower_validInputs
     
     Purpose: Validate that the power method computes the result correctly for valid inputs.
     Inputs: base = 2.0, exponent = 3.0
     Expected Result: 7.999999999746713 
     
-    testPower_zeroBase
+    5. testPower_zeroBase
     
     Purpose: Test the power method with a zero base.
     Inputs: base = 0.0, exponent = 3.0
     Expected Result: 0.0 
     
-    testPower_zeroExponent
+    6. testPower_zeroExponent
     
     Purpose: Verify that the method handles zero exponent correctly.
     Inputs: base = 2.0, exponent = 0.0
     Expected Result: 1.0 (since any number raised to the power of 0 is 1)
     
-    testLog_validInput
+    7. testLog_validInput
     
     Purpose: Confirm that the log method computes the logarithm correctly for a valid input.
     Inputs: x = 2.718281828459045 
     Expected Result: 1.0
     
-    testLog_nonPositiveInput
+    8. testLog_nonPositiveInput
     
     Purpose: Ensure the log method throws an IllegalArgumentException for non-positive inputs.
     Inputs: x = -1.0
     Expected Exception: IllegalArgumentException with the message "Logarithm of non-positive numbers is undefined."
 
-    testLog_zeroInput
+    9. testLog_zeroInput
     
     Purpose: Test the log method with zero input.
     Inputs: x = 0.0
     Expected Exception: IllegalArgumentException with the message "Logarithm of non-positive numbers is undefined."
     
-    testExp_validInput
+    10. testExp_validInput
     
     Purpose: Verify that the exp method computes the exponential function correctly for valid input.
     Inputs: x = 1.0
     Expected Result: 2.718281828459045 (using Java's Math.exp for comparison)
     
-    testExp_zeroInput
+    11. testExp_zeroInput
     
     Purpose: Test the exp method with zero input.
     Inputs: x = 0.0
     Expected Result: 1.0 
     
-    testExp_negativeInput
+    12. testExp_negativeInput
     
     Purpose: Validate that the exp method handles negative input correctly.
     Inputs: x = -1.0
