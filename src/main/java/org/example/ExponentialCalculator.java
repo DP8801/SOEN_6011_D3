@@ -1,5 +1,11 @@
 package org.example;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,56 +13,50 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 
 /**
  * This class represents a simple Swing-based application that calculates the
  * value of the expression a * b^x using user-provided inputs for a, b, and x.
  */
-public class ExponentialCalculator {
-  /**
-   * Text field for inputting the value of 'a'.
-   */
-  private static JTextField aText;
-
-  /**
-   * Text field for inputting the value of 'b'.
-   */
-  private static JTextField bText;
-
-  /**
-   * Text field for inputting the value of 'x'.
-   */
-  private static JTextField xText;
-
-  /**
-   * Text field for displaying the result of the calculation.
-   */
-  private static JTextField resultText;
+public final class ExponentialCalculator {
 
   private static final String INPUT_ERROR = "Input Error";
+  private static final String INPUT_INFO = "Input Info";
+  private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 14);
+  private static final Color BACKGROUND_COLOR = new Color(245, 245, 245);
+  private static final Color BUTTON_COLOR = new Color(70, 130, 180);
+  private static final Color BUTTON_TEXT_COLOR = Color.WHITE;
 
-  // Private constructor to prevent instantiation
+  private static JTextField aText;
+  private static JTextField bText;
+  private static JTextField xText;
+  private static JTextField resultText;
+
   private ExponentialCalculator() {
+    // Private constructor to prevent instantiation
     throw new UnsupportedOperationException("Utility class");
   }
 
   /**
    * The entry point of the application. Initializes the user interface,
    * creates a JFrame window, and adds a JPanel with components to the frame.
-   * <p>
    * This method sets up the main window of the application with the title "Function: ab^x".
    * It configures the window size and close operation, adds a panel to the frame,
    * and then places components on the panel. Finally, it makes the window visible.
-   * </p>
    *
    * @param args an array of command-line arguments passed to the application
    */
   public static void main(String[] args) {
-    JFrame frame = new JFrame("Function: ab^x");
+    JFrame frame = new JFrame("Exponential Function Calculator");
     frame.setSize(400, 300);
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    frame.setLocationRelativeTo(null); // Center the window on the screen
 
-    JPanel panel = new JPanel();
+    JPanel panel = new JPanel(new GridLayout(5, 2, 10, 10));
+    panel.setBackground(BACKGROUND_COLOR);
     frame.add(panel);
     placeComponents(panel);
 
@@ -68,61 +68,89 @@ public class ExponentialCalculator {
    *
    * @param panel the panel to place components on
    */
-  private static void placeComponents(final JPanel panel) {
-    panel.setLayout(null);
+  private static void placeComponents(JPanel panel) {
+    panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    panel.setLayout(new GridLayout(5, 2, 10, 10));
 
     JLabel labelA = new JLabel("Enter the value for a:");
-    labelA.setBounds(10, 20, 150, 25);
+    labelA.setFont(DEFAULT_FONT);
+    labelA.setToolTipText("Click for valid range of 'a'");
+    labelA.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        JOptionPane.showMessageDialog(panel, "Valid range for 'a': Any real number.",
+                INPUT_INFO, JOptionPane.INFORMATION_MESSAGE);
+      }
+    });
     panel.add(labelA);
 
     aText = new JTextField(20);
-    aText.setBounds(180, 20, 165, 25);
+    aText.setFont(DEFAULT_FONT);
+    aText.getDocument().addDocumentListener(createDocumentListener(aText));
     panel.add(aText);
 
     JLabel labelB = new JLabel("Enter the value for b:");
-    labelB.setBounds(10, 50, 150, 25);
+    labelB.setFont(DEFAULT_FONT);
+    labelB.setToolTipText("Click for valid range of 'b'");
+    labelB.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        JOptionPane.showMessageDialog(panel, "Valid range for 'b': Any real number greater than zero.",
+                INPUT_INFO, JOptionPane.INFORMATION_MESSAGE);
+      }
+    });
     panel.add(labelB);
 
     bText = new JTextField(20);
-    bText.setBounds(180, 50, 165, 25);
+    bText.setFont(DEFAULT_FONT);
+    bText.getDocument().addDocumentListener(createDocumentListener(bText));
     panel.add(bText);
 
     JLabel labelX = new JLabel("Enter the value for x:");
-    labelX.setBounds(10, 80, 150, 25);
+    labelX.setFont(DEFAULT_FONT);
+    labelX.setToolTipText("Click for valid range of 'x'");
+    labelX.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        JOptionPane.showMessageDialog(panel, "Valid range for 'x': Any real number.",
+                INPUT_INFO, JOptionPane.INFORMATION_MESSAGE);
+      }
+    });
     panel.add(labelX);
 
     xText = new JTextField(20);
-    xText.setBounds(180, 80, 165, 25);
+    xText.setFont(DEFAULT_FONT);
+    xText.getDocument().addDocumentListener(createDocumentListener(xText));
     panel.add(xText);
 
     JButton calculateButton = new JButton("Calculate");
-    calculateButton.setBounds(10, 110, 150, 25);
+    calculateButton.setFont(DEFAULT_FONT);
+    calculateButton.setBackground(BUTTON_COLOR);
+    calculateButton.setForeground(BUTTON_TEXT_COLOR);
     panel.add(calculateButton);
 
     JLabel resultLabel = new JLabel("Result:");
-    resultLabel.setBounds(10, 140, 150, 25);
+    resultLabel.setFont(DEFAULT_FONT);
     panel.add(resultLabel);
 
     resultText = new JTextField(20);
-    resultText.setBounds(180, 140, 165, 25);
+    resultText.setFont(DEFAULT_FONT);
+    resultText.setEditable(false);
     panel.add(resultText);
 
     calculateButton.addActionListener(e -> {
       try {
         // Check if any input fields are empty
         if (aText.getText().trim().isEmpty()) {
-          JOptionPane.showMessageDialog(panel, "Please enter a value for 'a'.", INPUT_ERROR,
-                  JOptionPane.WARNING_MESSAGE);
+          showMessage(panel, "Please enter a value for 'a'.");
           return;
         }
         if (bText.getText().trim().isEmpty()) {
-          JOptionPane.showMessageDialog(panel, "Please enter a value for 'b'.",
-                  INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
+          showMessage(panel, "Please enter a value for 'b'.");
           return;
         }
         if (xText.getText().trim().isEmpty()) {
-          JOptionPane.showMessageDialog(panel, "Please enter a value for 'x'.",
-                  INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
+          showMessage(panel, "Please enter a value for 'x'.");
           return;
         }
 
@@ -133,8 +161,7 @@ public class ExponentialCalculator {
 
         // Check if b is less than or equal to zero
         if (b <= 0) {
-          JOptionPane.showMessageDialog(panel, "The base 'b' must be greater than zero.",
-                  INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
+          showMessage(panel, "The base 'b' must be greater than zero.");
           return;
         }
 
@@ -142,13 +169,66 @@ public class ExponentialCalculator {
         double result = computeExponentialFunction(a, b, x);
         resultText.setText(String.valueOf(result));
       } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(panel, "Invalid input. Please enter numerical values.",
-                INPUT_ERROR, JOptionPane.ERROR_MESSAGE);
+        showMessage(panel, "Invalid input. Please enter numerical values.");
       } catch (ArithmeticException ex) {
         JOptionPane.showMessageDialog(panel, "Error: " + ex.getMessage(),
                 "Calculation Error", JOptionPane.ERROR_MESSAGE);
       }
     });
+  }
+
+  /**
+   * Creates a DocumentListener for validating input fields.
+   *
+   * @param textField the JTextField to add the listener to
+   * @return a DocumentListener that validates the text field
+   */
+  private static DocumentListener createDocumentListener(JTextField textField) {
+    return new DocumentListener() {
+      @Override
+      public void insertUpdate(DocumentEvent e) {
+        validateField(textField);
+      }
+
+      @Override
+      public void removeUpdate(DocumentEvent e) {
+        validateField(textField);
+      }
+
+      @Override
+      public void changedUpdate(DocumentEvent e) {
+        validateField(textField);
+      }
+
+      private void validateField(JTextField textField) {
+        String text = textField.getText().trim();
+        try {
+          if (textField == aText || textField == xText) {
+            Double.parseDouble(text); // Validate that the input is a number
+            textField.setBackground(Color.WHITE);
+          } else if (textField == bText) {
+            double value = Double.parseDouble(text);
+            if (value > 0) {
+              textField.setBackground(Color.WHITE);
+            } else {
+              textField.setBackground(Color.PINK); // Invalid input color
+            }
+          }
+        } catch (NumberFormatException e) {
+          textField.setBackground(Color.PINK); // Invalid input color
+        }
+      }
+    };
+  }
+
+  /**
+   * Shows an error message dialog with a specific message.
+   *
+   * @param panel the panel to associate the message dialog with
+   * @param message the message to display in the dialog
+   */
+  private static void showMessage(JPanel panel, String message) {
+    JOptionPane.showMessageDialog(panel, message, INPUT_ERROR, JOptionPane.WARNING_MESSAGE);
   }
 
   /**
@@ -160,8 +240,8 @@ public class ExponentialCalculator {
    * @return the computed value of a * b^x
    * @throws ArithmeticException if the result is out of range
    */
-  public static double computeExponentialFunction(double a, double b, double x) throws
-          ArithmeticException {
+  public static double computeExponentialFunction(double a, double b, double x)
+          throws ArithmeticException {
     double result = a * power(b, x);
 
     if (Double.isInfinite(result) || Double.isNaN(result)) {
@@ -188,13 +268,8 @@ public class ExponentialCalculator {
       return 1;
     }
 
-    // Calculate natural log of base
     double lnBase = log(base);
-
-    // Calculate exponent * ln(base)
     double expLnBase = exponent * lnBase;
-
-    // Calculate e^(expLnBase)
     return exp(expLnBase);
   }
 
@@ -206,9 +281,7 @@ public class ExponentialCalculator {
    */
   public static double log(double x) {
     if (x <= 0) {
-      throw new IllegalArgumentException(
-              "Logarithm of non-positive numbers is undefined."
-      );
+      throw new IllegalArgumentException("Logarithm of non-positive numbers is undefined.");
     }
 
     double result = 0;
