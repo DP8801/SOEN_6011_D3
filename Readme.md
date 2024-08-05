@@ -52,10 +52,10 @@
    To ensure the application is accessible to users with varying needs, the following accessibility features are incorporated:
 
    - Color Contrast: High-contrast colors are used for buttons and text fields to improve readability for users with visual impairments. Error messages are displayed in distinct colors to highlight issues.
-      ![img.png](img.png)
+      ![img.png](src/main/resources/images/img.png)
    
      - Tooltips and Error Messages: Tooltips are provided for input labels to offer additional information about valid input ranges. Real-time error messages are displayed through JOptionPane dialogs when invalid input is detected or when required fields are left empty.
-      ![img_1.png](img_1.png) 
+      ![img_1.png](src/main/resources/images/img_1.png) 
       
          _Tooltip._
      
@@ -64,4 +64,4 @@
      - Real-Time Validation: Real-time validation is implemented through DocumentListener to provide immediate feedback on user input. This feature helps users correct errors as they enter data, enhancing the overall user experience.
    
      - Error Messages: Error messages are designed to be clear and descriptive. They provide specific guidance on what needs to be corrected, which is crucial for users with cognitive disabilities.
-         ![img_2.png](img_2.png)
+         ![img_2.png](src/main/resources/images/img_2.png)
