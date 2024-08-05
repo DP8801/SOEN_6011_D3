@@ -61,8 +61,12 @@ The ExponentialCalculator application is designed with the following principles 
 Error Messages: Clear and descriptive error messages guide users on necessary corrections, enhancing accessibility for users with cognitive disabilities.
 ![img_2.png](src/main/resources/images/img_2.png)
 
-### 5. Unit test
-   The ExponentialCalculatorTest class contains unit tests for the ExponentialCalculator class. These tests are designed to validate the functionality and correctness of various methods within the ExponentialCalculator class. The tests cover a range of scenarios to ensure that the methods behave as expected under different conditions. Below is an overview of the tests included:
+### 5. Debugging
+Used JDB to debug the problems in the project.
+![img.png](src/main/resources/images/JDB.png)
+
+### 6. Unit test
+The ExponentialCalculatorTest class contains unit tests for the ExponentialCalculator class. These tests are designed to validate the functionality and correctness of various methods within the ExponentialCalculator class. The tests cover a range of scenarios to ensure that the methods behave as expected under different conditions. Below is an overview of the tests included:
 
 **Tests Overview**
 1. testComputeExponentialFunction_validInputs
